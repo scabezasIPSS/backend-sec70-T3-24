@@ -23,16 +23,23 @@ class Conexion
         SQL: Crear la bd y la tabla
 
         -- Crear la base de datos
-        CREATE DATABASE `ipss_backend_t3_s70`;
+        CREATE DATABASE `clinicat1_ipss_backend_t3_s70`;
 
         -- Crear el usuario y asignarle una contraseña
-        CREATE USER 'ipss_backend_t3_s70'@'localhost' IDENTIFIED BY '1pss_b4ck3nd';
+        CREATE USER 'clinicat1_ipss_backend_t3_s70'@'localhost' IDENTIFIED BY '1pss_b4ck3nd';
 
         -- Asignar privilegios al usuario para la base de datos específica
-        GRANT ALL PRIVILEGES ON `ipss_backend_t3_s70`.* TO 'ipss_backend_t3_s70'@'localhost';
+        GRANT ALL PRIVILEGES ON `clinicat1_ipss_backend_t3_s70`.* TO 'clinicat1_ipss_backend_t3_s70'@'localhost';
 
         -- Aplicar los cambios de privilegios
         FLUSH PRIVILEGES;
+
+        --
+        -- Nos conectamos con el usuario recien creado.
+        --
+
+        -- Indicamos que se va a utilizar esta base de datos
+        use clinicat1_ipss_backend_t3_s70;
 
         CREATE TABLE unidad_medida(
             id INT PRIMARY KEY,
@@ -66,6 +73,7 @@ class Conexion
         $this->connection = mysqli_connect($this->host, $this->username, $this->password, $this->db);
         mysqli_set_charset($this->connection, 'utf8');
         if (!$this->connection) {
+            echo 'Error: '.mysqli_connect_errno();
             return mysqli_connect_errno();
         }
         return $this->connection;
