@@ -84,7 +84,7 @@ class Indicador
         $con = new Conexion();
         // SELECT COUNT(*)+1 FROM indicador;
         //Necesito saber la cantidad de elementos que tiene la tabla. Los elementos los puedo obtener usando la funcion getAll llamando al "length en php se llama count para arreglos + 1".
-        $nuevoId = count($this->getAll()) + 1;//opcion 1
+        $nuevoId = count($this->getAll()) + 1; //opcion 1
         // $_nuevo->setId(count($this->getAll()) + 1);//opcion 2
 
         //con opcion 1
