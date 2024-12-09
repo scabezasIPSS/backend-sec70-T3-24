@@ -99,4 +99,31 @@ class Indicador
         }
         return false;
     }
+
+    public function enable(Indicador $_registro)
+    {
+        $con = new Conexion();
+        //con opcion 1
+        $query = "UPDATE indicador SET activo = true WHERE id = " . $_registro->getId();
+        // echo $query;
+        $rs = mysqli_query($con->getConnection(), $query);
+        $con->closeConnection();
+        if ($rs) {
+            return true;
+        }
+        return false;
+    }
+    public function disable(Indicador $_registro)
+    {
+        $con = new Conexion();
+        //con opcion 1
+        $query = "UPDATE indicador SET activo = false WHERE id = " . $_registro->getId();
+        // echo $query;
+        $rs = mysqli_query($con->getConnection(), $query);
+        $con->closeConnection();
+        if ($rs) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -48,6 +48,42 @@ switch ($_method) {
             echo json_encode(['error' => 'Prohibido']);
         }
         break;
+    case 'PATCH':
+        // echo '_parametroID: ' . $_parametroID;
+        if ($_authorization === $_token_patch) {
+            include_once '../conexion.php';
+            include_once 'modeloIndicador.php';
+            //se realiza la instancia al modelo Indicador
+            $modelo = new Indicador();
+            $modelo->setId($_parametroID);
+            $respuesta = $modelo->enable($modelo);
+            if ($respuesta) {
+                http_response_code(201);
+                echo json_encode(['Habilitado' => 'Sin errores']);
+            }
+        } else {
+            http_response_code(403);
+            echo json_encode(['error' => 'Prohibido']);
+        }
+        break;
+    case 'DELETE';
+        // echo 'apagando: ' . $_parametroID;
+        if ($_authorization === $_token_disable) {
+            include_once '../conexion.php';
+            include_once 'modeloIndicador.php';
+            //se realiza la instancia al modelo Indicador
+            $modelo = new Indicador();
+            $modelo->setId($_parametroID);
+            $respuesta = $modelo->disable($modelo);
+            if ($respuesta) {
+                http_response_code(201);
+                echo json_encode(['Deshabilitado' => 'Sin errores']);
+            }
+        }else{
+            http_response_code(403);
+            echo json_encode(['error' => 'Prohibido']);
+        }
+        break;
     default:
         http_response_code(501);
         echo json_encode(['error' => 'No implementado']);
